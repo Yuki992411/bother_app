@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= board.title %></h4>
+    <% board.tags.each do |tag| %>
+      <span class="badge badge-pill badge-primary"><%= tag.name %></span>
+    <% end %>
+    <% rate = board.comments.pluck(:star).compact %>
+    <% if(rate.size != 0) %>
+      <p class="text-right"> 
+        共感メーター：
+        <span class="font-weight-bold"><%= board.star_rate.round(2) %></span>
+        <span class="board__star">
+          <span class="star-rating-front" style="width: <%= board.star_rate*20 %>% ">★★★★★</span>
+          <span class="star-rating-back">★★★★★</span>
+        </span>
+      </p>
+      <p class="text-right">評価した人数：<%= rate.size %>人</p>
+    <% else %>
+      <p class="text-right">まだ評価されていません</p>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= simple_format(board.body) %></p>
+    <p class="text-right font-weight-bold mr-10"><%= board.name %></p>
+    <p class="text-right"><%= board.updated_at.to_s(:datetime_jp) %></p>
+  </div>
+</div>
+

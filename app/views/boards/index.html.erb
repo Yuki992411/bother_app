@@ -1,0 +1,74 @@
+<div class="d-flex align-items-center">
+  <h1>悩み事一覧</h1>
+  <h6>（全<%= Board.count%>件）</h6>
+  <div class="ml-auto boards__linkBox">
+    <%= link_to '新規作成', new_board_path, class: 'btn btn-outline-primary' %>
+  </div>
+</div>
+<%= form_with url: boards_path, method: :get, class: 'row justify-content-end boards__selectBox' do %>
+  <%= select_tag :board_params,
+                  options_for_select(
+                  {
+                    作成日時: 1,
+                    更新日時: 2,
+                    共感度: 3
+                  },params[:board_params]),
+                  {
+                    prompt: '項目で並び替え',
+                    class: 'custom-select custom-select-sm col-md-2 btn-light',
+                    onchange: 'submit(this.form);'
+                  }
+  %>
+  <%= select_tag :tag_id,
+                  options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                  {
+                    prompt: 'タグで絞り込み',
+                    class: 'custom-select custom-select-sm col-md-2 btn-light',
+                    onchange: 'submit(this.form);'
+                  }
+  %>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
+<table class="table table-hover boards__table text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+      <th>共感度</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board|  %>
+      <tr>
+        <td><%= board.id%></td>
+        <td><%= board.title %></td>
+        <td><%= board.name %></td>
+        <td><%= board.created_at.to_s(:datetime_jp)%></td>
+        <td><%= board.updated_at.to_s(:datetime_jp) %></td>
+        <td>
+          <div class="board_index__star">
+            <% rate = board.comments.pluck(:star).compact.map(&:to_f) %>
+            <% if(board.star_rate != 0.0) %>
+              <span class="star-rating-front" style="width: <%= board.star_rate*20 %>%">★★★★★</span>
+            <% end %>
+            <span class="star-rating-back">★★★★★</span>
+          </div>
+        </td>
+        <td><%= link_to '詳細', board, class: 'btn btn-outline-dark' %></td>
+        <% if @current_user && board.user_id == @current_user.id %>
+          <td><%= link_to '削除', board, class: 'btn btn-outline-dark', method: :delete, data: { confirm: '削除してもよろしいですか?? （コメントも削除されます )' } %></td>
+        <% else %>
+          <td><button type="button" class="btn btn-outline-dark" disabled>削除</button>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @boards %>
