@@ -34,6 +34,8 @@ gem 'bootstrap', '~> 4.5.0'
 gem 'mini_racer'
 gem 'kaminari'
 gem 'rails-i18n'
+# See: https://hackmd.io/@mametter/mimemagic-info-ja
+gem "mimemagic", "~> 0.3.10"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
