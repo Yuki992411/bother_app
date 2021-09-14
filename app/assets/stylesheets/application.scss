@@ -19,3 +19,18 @@
 @import "back";
 @import "users";
 @import "icons";
+
+body {
+  background-image: url(https://beiz.jp/images_P/wood-texture/wood-texture_00005.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body > div {
+  margin: 30px auto;
+  background-color: #fff;
+  box-shadow: 0px 10px 6px rgb(110, 110, 110);
+  border: gray solid 1px;
+  border-radius: 8px;
+}
