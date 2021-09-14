@@ -1,26 +1,30 @@
-<div class="jumbotron full-width">
+<div class="holder full-width white__wall">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4 title font-weight-bold">なやみのタネ</h1>
+      <p class="lead text-right text-light font-weight-bold mb-5">いろんな悩みをいろんな人と共有しよー！</p>
+    </div>
+  </div>
+
   <div class="container">
-    <h1 class="display-4 title font-weight-bold">なやみのタネ</h1>
-    <p class="lead text-right text-light font-weight-bold mb-5">いろんな悩みをいろんな人と共有しよー！</p>
-  </div>
-</div>
+    <h3>ログイン</h3>
+    <% if flash[:notice] %>
+      <div class="alert alert-success text-center"><%= flash[:notice] %></div>
+    <% end %>
 
-<h3>ログイン</h3>
-<% if flash[:notice] %>
-  <div class="alert alert-success text-center"><%= flash[:notice] %></div>
-<% end %>
-
-<%= form_with scope: :session, url: login_path do |f| %>
-  <div class="form-group">
-    <%= f.label :name, 'ユーザー名' %>
-    <%= f.text_field :name, class: 'form-control col-md-4' %>
+    <%= form_with scope: :session, url: login_path do |f| %>
+      <div class="form-group">
+        <%= f.label :name, 'ユーザー名' %>
+        <%= f.text_field :name, class: 'form-control col-md-4' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'form-control col-md-4' %>
+      </div>
+      <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+    <% end %>
+    <div class="text-right">
+      <%= link_to '新しいアカウントを作成する',new_user_path ,class: 'btn btn-outline-info' %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password, class: 'form-control col-md-4' %>
-  </div>
-  <%= f.submit 'ログイン', class: 'btn btn-primary' %>
-<% end %>
-<div class="text-right">
-  <%= link_to '新しいアカウントを作成する',new_user_path ,class: 'btn btn-outline-info' %>
 </div>

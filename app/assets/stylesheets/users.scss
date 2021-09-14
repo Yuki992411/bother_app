@@ -2,14 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .jumbotron {
+  margin-top: -10px;
   background-image: image-url("NEWPORT.jpg");
   background-size: cover;
   background-position: center 70%;
-  padding-top: 25%;
+  padding-top: 17%;
 }
 
 .title {
   position: absolute;
   margin-top: -12%;
   display: inline-block;
+}
+
+.white__wall {
+  margin-top: -31px;
+  margin-bottom: -31px;
+  background-color: #fff;
 }
