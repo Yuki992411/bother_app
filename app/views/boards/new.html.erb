@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center">
   <h1>悩み事を投稿しよー</h1>
   <div class="ml-auto boards__linkBox">
-    <%= link_to '一覧',  boards_path, class: 'btn btn-outline-dark' %>
+    <%= link_to '一覧に戻る', boards_path, class: 'btn btn-secondary btn-sm' %>
   </div>
 </div>
 <%= render partial: 'form', locals: { board: @board } %>

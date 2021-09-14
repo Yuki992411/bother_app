@@ -1,6 +1,13 @@
-<div class="card">
+<div class="card border-dark">
   <div class="card-header">
-    <h4><%= board.title %></h4>
+    <h4>
+      <%= board.title %>
+      <% if @board.user_id == @current_user.id %>
+        <%= link_to edit_board_path(@board) do%>
+          <i class="bi bi-pencil-square pen" title="編集"></i>
+        <% end %>
+      <% end %>
+    </h4>
     <% board.tags.each do |tag| %>
       <span class="badge badge-pill badge-primary"><%= tag.name %></span>
     <% end %>
@@ -13,10 +20,8 @@
           <span class="star-rating-front" style="width: <%= board.star_rate*20 %>% ">★★★★★</span>
           <span class="star-rating-back">★★★★★</span>
         </span>
+        (<%= rate.size %>人)
       </p>
-      <p class="text-right">評価した人数：<%= rate.size %>人</p>
-    <% else %>
-      <p class="text-right">まだ評価されていません</p>
     <% end %>
   </div>
   <div class="card-body">
@@ -25,4 +30,3 @@
     <p class="text-right"><%= board.updated_at.to_s(:datetime_jp) %></p>
   </div>
 </div>
-

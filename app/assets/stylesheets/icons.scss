@@ -1,0 +1,17 @@
+.pen {
+  font-size: 20px;
+  color: #000000;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.trash {
+  font-size: 24px;
+  color: #be303e;
+  transition: 0.15s ease-in-out;
+}
+
+.trash:hover {
+  font-size: 26px;
+  color: red;
+}

@@ -1,10 +1,5 @@
-<div class="d-flex align-items-center mt-4 mb-4">
-  <div class="ml-auto boards__linkBox">
-    <% if(@board.user_id == @current_user.id) %>
-      <%= link_to '編集', edit_board_path(@board), class: 'btn btn-secondary' %>
-    <% end %>
-    <%= link_to '一覧', boards_path, class: 'btn btn-outline-dark' %>
-  </div>
+<div class="ml-auto mt-4 mb-4 text-right">
+  <%= link_to '一覧に戻る', boards_path, class: 'btn btn-secondary btn-sm' %>
 </div>
 
 <% if flash[:notice] %>
@@ -13,9 +8,18 @@
 
 <%= render @board %>
 
-<div class="p-comment__list">
-  <div class="p-comment_listTitle">みんなのコメント</div>
-  <%= render @board.comments %>
-</div>
+<% if @board.user_id != @current_user.id %>
+  <%= render partial: 'comments/form', locals: { comment: @comment } %>
+<% end %>
 
-<%= render partial: 'comments/form', locals: { comment: @comment } %>
+<div class="p-comment__list">
+  <h4 class="p-comment__listTitle">みんなのコメント</h4>
+  <% @board.comments.reverse_each.each_slice(2) do |comment_1, comment_2 | %>
+    <div class="row">
+      <%= render comment_1 %>
+      <% if comment_2 != nil %>
+        <%= render comment_2 %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

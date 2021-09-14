@@ -1,13 +1,17 @@
-<div class="p-comment__item">
-  <p><%= simple_format(comment.comment) %></p>
+<div class="p-comment__item col-5">
+  <h5><%= comment.name %></h5>
+  <div class="comment__body">
+    <p><%= simple_format(comment.comment) %></p>
+  </div>
   <div class="p-comment__bottomLine">
-    <span><%= comment.name %></span>
     <span><%= comment.created_at.to_s(:datetime_jp) %></span>
     <div class="comment__star">
       <% rate = comment.star.to_i*20 %>
       <span class="star-rating-front" style="width: <%= rate %>%">★★★★★</span>
       <span class="star-rating-back">★★★★★</span>
     </div>
-    <span><%= link_to '削除', comment, method: :delete, data: { confirm: '削除してもよろしいですか??' } %></span>
+    <%= link_to comment, method: :delete, data: { confirm: '削除してもよろしいですか??' } do %>
+    <i class="bi bi-trash-fill trash" title="削除"></i>
+    <% end %>
   </div>
 </div>
