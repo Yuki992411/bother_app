@@ -1,7 +1,16 @@
 .boards__table {
+  letter-spacing: 2px;
   tr:hover{
     cursor: pointer;
   }
+  tbody td:nth-child(2){
+    font-size: 20px;
+  }
+}
+
+.boards__title {
+  font-size: 70px;
+  font-family: 'Hachi Maru Pop', cursive;
 }
 
 .boards__linkBox {
@@ -25,34 +34,8 @@
   margin-bottom: 0.5%;
 }
 
-.board_index__star {
-  position: relative;
-  width: 5em;
-  font-size: 20px;
-}
-
-.board__star {
-  position: relative;
-  width: 5em;
-  font-size: 20px;
-  white-space: nowrap;
-}
-
-.star-rating-front {
-  position: absolute;
-  top: 3;
-  left: 0;
-  overflow: hidden;
-  color: #ffc107;
-}
-
-.star-rating-back {
-  color: #ccc;
-}
-
-.board__pin {
-  width: 53px;
-  height: 50px;
-  text-align: center;
+.boards__pin {
+  width: 60px;
+  height: 60px;
   margin: -60px auto 0px;
 }

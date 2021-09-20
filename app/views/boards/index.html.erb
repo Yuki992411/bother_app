@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center">
-  <h1>悩み事一覧</h1>
+  <h1 class="boards__title">悩みごと</h1>
   <h6>（全<%= Board.count%>件）</h6>
-  <img src="http://nx.myafi.net/wp-content/uploads/pin02.png" alt="×" class="board__pin">
+  <img src="http://nx.myafi.net/wp-content/uploads/pin02.png" alt="×" class="boards__pin">
   <div class="ml-auto boards__linkBox">
     <%= link_to new_board_path do %>
       <i class="bi bi-plus-square plus"></i>
@@ -34,44 +34,58 @@
 <% if flash[:notice] %>
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
-<table class="table table-hover boards__table text-center">
+<table class="table table-hover text-center boards__table">
   <thead class="thead-dark">
     <tr>
       <th>#</th>
       <th>タイトル</th>
-      <th>作成者</th>
-      <th>作成日時</th>
+      <th>内容</th>
       <th>更新日時</th>
       <th>共感度</th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @boards.each_with_index do |board, i| %>
-      <tr>
+      <tr board_path="boards/<%= board.id %>">
         <td><%= i + 1 %></td>
-        <td><%= board.title %></td>
-        <td><%= board.name %></td>
-        <td><%= board.created_at.to_s(:datetime_jp)%></td>
-        <td><%= board.updated_at.to_s(:datetime_jp) %></td>
-        <td>
-          <div class="board_index__star">
-            <% rate = board.comments.pluck(:star).compact.map(&:to_f) %>
-            <% if(board.star_rate != 0.0) %>
-              <span class="star-rating-front" style="width: <%= board.star_rate*20 %>%">★★★★★</span>
-            <% end %>
-            <span class="star-rating-back">★★★★★</span>
-          </div>
+        <td class="font-weight-bold">
+        <% if board.title.length < 11 %>
+          <%= board.title %>
+        <% else %>
+          <%= board.title.slice(0, 10) %>...
+        <% end %>
         </td>
-        <td><%= link_to '詳細', board, class: 'btn btn-outline-dark' %></td>
-        <% if @current_user && board.user_id == @current_user.id %>
-          <td>
+        <td>
+          <% if board.body.length < 16 %>
+            <%= board.body %>
+          <% else %>
+            <%= board.body.slice(0, 15) %>...
+          <% end %>
+        </td>
+        <td><%= board.updated_at.to_s(:table_time) %></td>
+        <td>
+          <% space = 0.2 %>
+          <span
+            class="star__rating" style="font-size: 25px;
+            letter-spacing: <%= space %>em">
+            ★★★★★
+            <% if(board.star_rate != 0.0) %>
+              <% scale = board.star_rate %>
+              <span
+                class="star__rating__after" style="width: calc( <%= scale %> * ( 1em - <%= space / 2 %>em ) + <%= scale.floor %> * <%= space %>em)">
+                ★★★★★
+              </span>
+            <% end %>
+          </span>
+        </td>
+        <td>
+          <% if @current_user && board.user_id == @current_user.id %>
             <%= link_to board, method: :delete, data: { confirm: '削除してもよろしいですか?? （コメントも削除されます )' } do %>
               <i class="bi bi-trash-fill trash" title="削除"></i>
             <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,7 +1,13 @@
 .plus {
   display: inline-block;
-  font-size: 40px;
+  color: #343a40;
+  font-size: 35px;
   margin-bottom: 5px;
+  transition: 0.15s ease-in-out;
+}
+
+.plus:hover {
+  color: #6eb5fb;
 }
 
 .pen {
@@ -12,12 +18,26 @@
 }
 
 .trash {
-  font-size: 24px;
-  color: #be303e;
+  font-size: 20px;
+  color: #343a40;
   transition: 0.15s ease-in-out;
 }
 
 .trash:hover {
-  font-size: 26px;
   color: red;
+}
+
+.star__rating {
+  position: relative;
+  text-align: left;
+  color: #ccc;
+}
+
+.star__rating__after {
+  position: absolute;
+  text-align: left;
+  left: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffc107;
 }
