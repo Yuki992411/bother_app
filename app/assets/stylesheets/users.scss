@@ -5,7 +5,7 @@
   background-image: image-url("NEWPORT.jpg");
   background-size: cover;
   background-position: center 70%;
-  padding-top: 25%;
+  padding-top: 30%;
   border-radius: 0px;
 }
 
@@ -25,6 +25,11 @@
 }
 
 .new__form {
+  margin-top: 70px;
+}
+
+.new__form > h1,
+.new__form > form {
   width: 300px;
   margin: auto;
   text-align: center;
