@@ -21,6 +21,7 @@ class BoardsController < ApplicationController
   def new
     if @current_user
       @board = Board.new(flash[:board])
+      @board.name = @current_user.name
     else
       redirect_to root_path, flash: { notice: "ログインをすることで新たに掲示板を作成することができます" } 
     end
