@@ -2,7 +2,7 @@
   <h1 class="boards__title">悩みごと</h1>
   <h6>（全<%= Board.count%>件）</h6>
   <img src="http://nx.myafi.net/wp-content/uploads/pin02.png" alt="×" class="boards__pin">
-  <div class="ml-auto boards__linkBox">
+  <div class="ml-auto">
     <%= link_to new_board_path do %>
       <i class="bi bi-plus-square plus"></i>
     <% end %>
