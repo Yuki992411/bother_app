@@ -16,7 +16,7 @@
     <% end %>
     今日は、<b><%=l(Time.zone.now, format: "%-m月 %-d日 %a曜日") %></b>です。
     <div class="d-flex align-items-center">
-      <h1>マイページ</h1>
+      <h1 class="boards__title">マイページ</h1>
       <div class="ml-auto boards__linkBox">
         <%= link_to 'アカウント削除', user_path(@current_user), class: 'btn btn-outline-danger font-weight-bold', method: :delete, data: { confirm: 'アカウントを削除します。 （掲示板の内容も全て削除されます )' } %>
       </div>
