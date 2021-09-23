@@ -1,35 +1,28 @@
-<div class="holder full-width white__wall">
-  <div class="first"></div>
-  <div class="second"></div>
-  <div class="third"></div>
-  <h5 class="information">
-  </h5>
-  <div class="txt container bg-light my-5">
-    <% if Time.zone.now.hour < 4 %>
-      こんばんは。
-    <% elsif Time.zone.now.hour < 11 %>
-      おはようございます。
-    <% elsif Time.zone.now.hour >= 17 %>
-      こんばんは。
-    <% else %>
-      こんにちは。
-    <% end %>
-    今日は、<b><%=l(Time.zone.now, format: "%-m月 %-d日 %a曜日") %></b>です。
-    <div class="d-flex align-items-center">
-      <h1 class="boards__title">マイページ</h1>
-      <div class="ml-auto boards__linkBox">
-        <%= link_to 'アカウント削除', user_path(@current_user), class: 'btn btn-outline-danger font-weight-bold', method: :delete, data: { confirm: 'アカウントを削除します。 （掲示板の内容も全て削除されます )' } %>
-      </div>
-    </div>
-    <li>アカウント名　　：<%= @current_user.name %></li>
-    <li>アカウント作成日：<%= @current_user.created_at.to_s(:defaulttime_jp)%></li>
-
-    <div>
-      <%= link_to '自分の掲載した掲示板を表示させる',
-        boards_path(board_params: 4), class: 'btn btn-lg btn-warning mt-3' %>
-    </div>
-    <div class='text-right boards__linkBox'>
-      <%= link_to '掲示板に戻る', boards_path, class: 'btn btn-secondary mb-3' %>
-    </div>
+<div class="mt-2">
+  <% if Time.zone.now.hour < 4 %>
+    こんばんは。
+  <% elsif Time.zone.now.hour < 11 %>
+    おはようございます。
+  <% elsif Time.zone.now.hour >= 17 %>
+    こんばんは。
+  <% else %>
+    こんにちは。
+  <% end %>
+  今日は、<b><%=l(Time.zone.now, format: "%-m月 %-d日 %a曜日") %></b>です。
+</div>
+<div class="d-flex align-items-center">
+  <h1 class="boards__title">マイページ</h1>
+  <div class="ml-auto">
+    <%= link_to 'アカウント削除', user_path(@current_user), class: 'btn btn-outline-danger font-weight-bold', method: :delete, data: { confirm: 'アカウントを削除します。 （掲示板の内容も全て削除されます )' } %>
   </div>
+</div>
+<li>アカウント名　　：<%= @current_user.name %></li>
+<li>アカウント作成日：<%= @current_user.created_at.to_s(:defaulttime_jp)%></li>
+
+<div>
+  <%= link_to '自分の掲載した掲示板を表示させる',
+    boards_path(board_params: 4), class: 'btn btn-lg btn-warning mt-3' %>
+</div>
+<div class='text-right'>
+  <%= link_to '掲示板に戻る', boards_path, class: 'btn btn-secondary btn-sm mb-3' %>
 </div>

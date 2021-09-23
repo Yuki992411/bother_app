@@ -17,7 +17,6 @@
 @import "base";
 @import "boards";
 @import "comments";
-@import "back";
 @import "users";
 @import "icons";
 
@@ -28,7 +27,7 @@ body {
   background-repeat: no-repeat;
 }
 
-body > div {
+.page__base {
   margin: 30px auto;
   background-color: #fff;
   box-shadow: 0px 10px 6px rgb(110, 110, 110);
