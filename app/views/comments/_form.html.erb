@@ -1,10 +1,8 @@
 <%= render "shared/error_messages" %>
 
-<div class="accordion p-comment__formBox" id="form_accordion">
-  <div id="form_heading" title="作成">
-    <p class="p-comment__formTitle collapsed" type="button" data-toggle="collapse" data-target="#form_collapse" aria-expanded="false" aria-controls="form_collapse">コメントをかく</p>
-  </div>
-  <div id="form_collapse" class="collapse" aria-labelledby="form_heading" data-parent="#form_accordion">
+<div class="comment__accordion p-comment__formBox">
+  <p title="作成" class="p-comment__formTitle">コメントをかく<i class="bi bi-chevron-compact-down chevron"></i></p>
+  <div>
     <%= form_for comment do |f| %>
       <%= f.hidden_field :board_id %>
       <div class="form-group">

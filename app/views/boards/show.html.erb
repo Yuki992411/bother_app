@@ -14,12 +14,15 @@
 
 <div class="p-comment__list">
   <h4 class="p-comment__listTitle">みんなのコメント</h4>
-  <% @board.comments.reverse_each.each_slice(2) do |comment_1, comment_2 | %>
-    <div class="row">
-      <%= render comment_1 %>
-      <% if comment_2 != nil %>
-        <%= render comment_2 %>
-      <% end %>
-    </div>
+  <% @board.comments.reverse_each.each_with_index do |comment, index| %>
+    <% if index % 2 == 0 %>
+      <div class= "comment__left">
+        <%= render comment %>
+      </div>
+    <% else %>
+      <div class= "comment__right">
+        <%= render comment %>
+      </div>
+    <% end %>
   <% end %>
 </div>

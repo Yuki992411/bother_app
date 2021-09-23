@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.comment__accordion > div {
+  display: none;
+}
+
 .p-comment__formBox {
   margin: 30px auto;
   border: 1px solid #000;
@@ -25,35 +29,92 @@
   padding: 20px;
 }
 
+.comment__left {
+  margin: 30px auto 30px 0;
+}
+
+.comment__right {
+  margin: 30px 0 30px auto;
+}
+
+.comment__left,
+.comment__right {
+  position: relative;
+  width: 680px;
+  z-index: 1;
+}
+
+.comment__left:after,
+.comment__right:after {
+  position: absolute;
+  bottom: 10px;
+  right: 45px;
+  width: 60%;
+  height: 85%;
+  content: "　";
+	box-shadow: 10px 7px 12px #999;
+	transform: rotate(1deg);
+	z-index: -1;
+}
+
 .p-comment__item {
-  border: 1px solid #dfdfdf;
-  margin: 10px auto;
-  box-shadow: 5px 5px gray;
+  margin-right: 40px;
+  margin-left: 40px;
+  line-height: 1.8;
+}
+
+.fusen__red {
+  background-image:
+    linear-gradient(90deg, rgba(110, 110, 110, 0.12) 30px, rgba(0, 0, 0, 0) 75px)
+  , linear-gradient(90deg, rgb(255, 173, 173), rgb(255, 115, 100));
+}
+
+.fusen__blue {
+  background-image:
+    linear-gradient(90deg, rgba(110, 110, 110, 0.12) 30px, rgba(0, 0, 0, 0) 75px)
+  , linear-gradient(90deg, rgb(204, 247, 255), rgb(166, 253, 253));
+}
+
+.fusen__green {
+  background-image:
+    linear-gradient(90deg, rgba(110, 110, 110, 0.1) 30px, rgba(0, 0, 0, 0) 75px)
+  , linear-gradient(90deg, rgb(210, 255, 204), rgb(176, 253, 166));
+}
+
+.comment__name {
+  margin-bottom: 0px;
+  padding-top: 3px;
+  padding-left: 10px;
 }
 
 .comment__body {
-  height: 120px;
+  padding-left: 80px;
+  height: 100px;
   overflow-wrap: break-word;
-  overflow: scroll;
+  overflow-y: hidden;
+}
+
+.comment__body__nodisplay {
+  display: none;
+}
+
+.comment__body__detail {
+  display: none;
+  padding-left: 80px;
+  overflow-wrap: break-word;
 }
 
 .p-comment__bottomLine {
-  font-size: 15px;
+  margin-top: 10px;
+  margin-right: 10px;
   text-align: right;
-
-  > span {
-    font-size: 14px;
-    margin: 0 12px;
-  }
 }
 
-.comment__star {
-  position: relative;
-  width: 5em;
-  height: 0em;
-  font-size: 15px;
-
+.p-comment__bottomLine > span:nth-child(1) {
+  font-size: 14px;
+  margin: 0 6px;
 }
+
 .comment__evaluate{
   display: flex;
   justify-content: flex-end;

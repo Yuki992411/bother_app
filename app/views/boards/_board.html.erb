@@ -16,9 +16,16 @@
       <p class="text-right"> 
         共感メーター：
         <span class="font-weight-bold"><%= board.star_rate.round(2) %></span>
-        <span class="board__star">
-          <span class="star-rating-front" style="width: <%= board.star_rate*20 %>% ">★★★★★</span>
-          <span class="star-rating-back">★★★★★</span>
+        <% space = 0.2 %>
+        <span
+          class="star__rating" style="font-size: 25px;
+          letter-spacing: <%= space %>em">
+          ★★★★★
+          <% scale = board.star_rate %>
+          <span
+            class="star__rating__after" style="width: calc( <%= scale %> * ( 1em - <%= space / 2 %>em ) + <%= scale.floor %> * <%= space %>em)">
+            ★★★★★
+          </span>
         </span>
         (<%= rate.size %>人)
       </p>

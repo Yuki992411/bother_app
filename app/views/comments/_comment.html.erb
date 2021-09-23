@@ -1,17 +1,46 @@
-<div class="p-comment__item col-5">
-  <h5><%= comment.name %></h5>
+<% created_sec = comment.created_at.sec %>
+<% case created_sec % 3 %>
+<% when 0 %>
+  <% fusen_color = 'fusen__red' %>
+<% when 1 %>
+  <% fusen_color = 'fusen__blue' %>
+<% when 2 %>
+  <% fusen_color = 'fusen__green' %>
+<% end %>
+<% fusen_rotate = created_sec % 20 %>
+<% if fusen_rotate < 10 %>
+  <% fusen_rotate = (fusen_rotate - 10) / 10.0 %>
+<% else %>
+  <% fusen_rotate = (fusen_rotate - 9) / 10.0 %>
+<% end %>
+<%= content_tag(
+  :div,
+  class: "p-comment__item #{fusen_color}",
+  style: "transform: rotate(#{fusen_rotate}deg)") do
+%>
+  <h5 class='comment__name'><%= comment.name %></h5>
+  <div class="comment__body__detail">
+    <p><%= simple_format(comment.comment) %></p>
+  </div>
   <div class="comment__body">
     <p><%= simple_format(comment.comment) %></p>
   </div>
   <div class="p-comment__bottomLine">
-    <span><%= comment.created_at.to_s(:datetime_jp) %></span>
-    <div class="comment__star">
-      <% rate = comment.star.to_i*20 %>
-      <span class="star-rating-front" style="width: <%= rate %>%">★★★★★</span>
-      <span class="star-rating-back">★★★★★</span>
-    </div>
+    <i class="read__more bi bi-chevron-double-down"></i>
+    <span><%= comment.created_at.to_s(:table_time) %></span>
+    <% space = 0.25 %>
+    <span
+      class="star__rating" style="font-size: 20px;
+      letter-spacing: <%= space %>em">
+      ★★★★★
+      <% scale = comment.star.to_i %>
+      <span
+        class="star__rating__after" style="width: calc( <%= scale %> * ( 1em - <%= space / 2 %>em ) + <%= scale.floor %> * <%= space %>em)">
+        ★★★★★
+      </span>
+    </span>
     <%= link_to comment, method: :delete, data: { confirm: '削除してもよろしいですか??' } do %>
     <i class="bi bi-trash-fill trash" title="削除"></i>
     <% end %>
   </div>
-</div>
+<% end %>
