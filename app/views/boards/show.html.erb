@@ -17,11 +17,11 @@
   <% @board.comments.reverse_each.each_with_index do |comment, index| %>
     <% if index % 2 == 0 %>
       <div class= "comment__left">
-        <%= render comment %>
+        <%= render partial: 'comments/comment', locals: { comment: comment, board: @board } %>
       </div>
     <% else %>
       <div class= "comment__right">
-        <%= render comment %>
+        <%= render partial: 'comments/comment', locals: { comment: comment, board: @board } %>
       </div>
     <% end %>
   <% end %>

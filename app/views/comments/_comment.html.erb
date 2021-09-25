@@ -39,8 +39,11 @@
         ★★★★★
       </span>
     </span>
-    <%= link_to comment, method: :delete, data: { confirm: '削除してもよろしいですか??' } do %>
-    <i class="bi bi-trash-fill trash" title="削除"></i>
+    <%# TODO: if all user_ids is not nil in production env comments table, remove `comment.user_id == nil` %>
+    <% if comment.user_id == nil || comment.user_id == @current_user.id || board.user_id == @current_user.id %>
+      <%= link_to comment, method: :delete, data: { confirm: '削除してもよろしいですか??' } do %>
+        <i class="bi bi-trash-fill trash" title="削除"></i>
+      <% end %>
     <% end %>
   </div>
 <% end %>

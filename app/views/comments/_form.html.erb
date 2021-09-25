@@ -5,6 +5,7 @@
   <div>
     <%= form_for comment do |f| %>
       <%= f.hidden_field :board_id %>
+      <%= f.hidden_field :user_id %>
       <div class="form-group">
         <%= f.label :name, '名前' %>
         <%= f.text_field :name, value: @current_user.name, class: 'form-control', placeholder: "10文字以内" %>

@@ -48,7 +48,7 @@ class BoardsController < ApplicationController
       else 
         @board.update_attribute(:star_rate, 0.0)
       end
-      @comment = Comment.new(board_id: @board.id)
+      @comment = Comment.new(board_id: @board.id, user_id: @current_user.id)
     else
       redirect_to root_path, flash: { notice: "ログインをすることで内容を閲覧することができます" }
     end
