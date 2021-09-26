@@ -7,6 +7,7 @@
 <% when 2 %>
   <% fusen_color = 'fusen__green' %>
 <% end %>
+<% fusen_color = 'fusen__rare' if created_sec == 25 %>
 <% fusen_rotate = created_sec % 20 %>
 <% if fusen_rotate < 10 %>
   <% fusen_rotate = (fusen_rotate - 10) / 10.0 %>
