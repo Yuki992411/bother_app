@@ -37,6 +37,7 @@ gem 'rails-i18n'
 # See: https://hackmd.io/@mametter/mimemagic-info-ja
 gem "mimemagic", "~> 0.3.10"
 gem 'bootstrap_icons_rails'
+gem 'simple_calendar', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

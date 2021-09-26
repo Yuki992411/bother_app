@@ -23,6 +23,11 @@
   <%= link_to '自分の掲載した掲示板を表示させる',
     boards_path(board_params: 4), class: 'btn btn-lg btn-warning mt-3' %>
 </div>
+<div>
+  <%= month_calendar do |date| %>
+    <%= date.day %>
+  <% end %>
+</div>
 <div class='text-right'>
   <%= link_to '掲示板に戻る', boards_path, class: 'btn btn-secondary btn-sm mb-3' %>
 </div>
