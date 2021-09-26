@@ -28,3 +28,6 @@ ja:
     - 木
     - 金
     - 土
+  simple_calendar:
+    previous: "<<"
+    next: ">>"

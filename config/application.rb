@@ -13,5 +13,6 @@ module App
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
+    config.beginning_of_week = :sunday
   end
 end
